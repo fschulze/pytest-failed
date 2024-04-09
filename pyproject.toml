@@ -54,6 +54,12 @@ target-version = "py38"
 [tool.ruff.lint]
 isort.case-sensitive = true
 select = ["ALL"]
+ignore = [
+    "COM812",
+    "D211",
+    "D213",
+    "ISC001",
+]
 
 
 [tool.setuptools]
