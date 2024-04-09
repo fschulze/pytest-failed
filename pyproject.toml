@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools", "setuptools_changelog_shortener", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+dynamic = ["version", "readme"]
+name = "pytest-failed"
+dependencies = [
+    "pytest",
+]
+license = {file = "LICENSE"}
+maintainers = [
+    {name = "Florian Schulze", email = "mail@florian-schulze.net"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Utilities",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+
+
+[project.urls]
+Homepage = "https://github.com/fschulze/pytest-failed"
+Source = "https://github.com/fschulze/pytest-failed"
+Tracker = "https://github.com/fschulze/pytest-failed/issues"
+
+
+[project.entry-points.pytest11]
+pytest_failed = "pytest_failed.plugin"
+
+
+[tool.ruff]
+src = ["src"]
+target-version = "py38"
+
+
+[tool.ruff.lint]
+isort.case-sensitive = true
+select = ["ALL"]
+
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = [
+    'pytest_failed',
+]
+
+
+[tool.setuptools.dynamic]
+version = {attr = "pytest_failed.__version__"}
+readme = {file = ["README.rst", "CHANGELOG.short.rst"]}
+
+
+[tool.setuptools_changelog_shortener]
+read_from = "CHANGELOG.rst"
+write_to = "CHANGELOG.short.rst"
+count = 5
+delimiter = "^==+"
+title = "=========\nChangelog\n========="
