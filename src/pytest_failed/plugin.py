@@ -20,13 +20,14 @@ def load_nodeids(config, path):
         prefix = f"{prefix}/"
     nodeids = {}
     known_garbage = frozenset(("ERROR", "FAILED"))
-    for line in path.open("r"):
-        parts = [x for x in line.strip().split() if x not in known_garbage]
-        if parts:
-            nodeid = parts[0]
-            if nodeid.startswith(prefix):  # removeprefix with python 3.9
-                nodeid = nodeid[len(prefix):]
-            nodeids[nodeid] = True
+    with path.open("r") as f:
+        for line in f:
+            parts = [x for x in line.strip().split() if x not in known_garbage]
+            if parts:
+                nodeid = parts[0]
+                if nodeid.startswith(prefix):  # removeprefix with python 3.9
+                    nodeid = nodeid[len(prefix):]
+                nodeids[nodeid] = True
     return nodeids
 
 
